@@ -3,8 +3,8 @@ package main1_19;
 import javax.swing.JFrame;
 import java.awt.*;
 /**
- * @author 1futureX
- * @version 1.16
+ * @author rxxuzi
+ * @version 1.19
  */
 public class Main extends JFrame{
 	static Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -13,13 +13,13 @@ public class Main extends JFrame{
 	Screen Object = new Screen();
 	
 	public Main() {
-		setUndecorated(false);//true‚É‚·‚é‚Æƒo[‚ªÁ‚¦‚é
-		setSize(ScreenSize);//‘S‰æ–Ê•\¦
+		setUndecorated(false);//trueã«ã™ã‚‹ã¨ãƒãƒ¼ãŒæ¶ˆãˆã‚‹
+		setSize(ScreenSize);//å…¨ç”»é¢è¡¨ç¤º
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(0,0);
-		setTitle("3D Graphics");
-		add(Object); // Screen.java‚Ì“à—e‚ğFrame‚É’Ç‰Á‚·‚éB
+		setTitle("3D Graphics Ver 1.19");
+		add(Object); // Screen.javaã®å†…å®¹ã‚’Frameã«è¿½åŠ ã™ã‚‹ã€‚
 	}
 	public static void main(String[] args) {
 	}
