@@ -3,7 +3,7 @@ package main1_20;
 import javax.swing.JFrame;
 import java.awt.*;
 /**
- * @author 1futureX
+ * @author rxxuzi
  * @version 1.20
  */
 @SuppressWarnings("serial")
@@ -12,13 +12,13 @@ public class Main extends JFrame{
 	static long StartUpTime = System.currentTimeMillis();
 	Screen Panel = new Screen();
 	public Main() {
-		setUndecorated(false);//true‚É‚·‚é‚Æƒo[‚ªÁ‚¦‚é
-		setSize(ScreenSize);//‘S‰æ–Ê•\¦
+		setUndecorated(false);//trueã«ã™ã‚‹ã¨ãƒãƒ¼ãŒæ¶ˆãˆã‚‹
+		setSize(ScreenSize);//å…¨ç”»é¢è¡¨ç¤º
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(0,0);
 		setTitle("3D Graphics Ver 1.20");
-		add(Panel); // Screen.java‚Ì“à—e‚ğFrame‚É’Ç‰Á‚·‚éB
+		add(Panel); // Screen.javaã®å†…å®¹ã‚’Frameã«è¿½åŠ ã™ã‚‹ã€‚
 	}
 	public static void main(String[] args) {
 		JFrame f = new Main();
