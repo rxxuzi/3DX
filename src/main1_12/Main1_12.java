@@ -3,7 +3,7 @@ package main1_12;
 import javax.swing.JFrame;
 import java.awt.*;
 /**
- * @author 1futureX
+ * @author rxxuzi
  * @version 1.12
  * 
  */
@@ -12,13 +12,13 @@ public class Main1_12 extends JFrame{
 	static JFrame f = new Main1_12();
 	Screen Object = new Screen();
 	public Main1_12() {
-		setUndecorated(false);//true‚É‚·‚é‚Æƒo[‚ªÁ‚¦‚é
-		setSize(Toolkit.getDefaultToolkit().getScreenSize());//‘S‰æ–Ê•\¦
+		setUndecorated(false);//trueã«ã™ã‚‹ã¨ãƒãƒ¼ãŒæ¶ˆãˆã‚‹
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());//å…¨ç”»é¢è¡¨ç¤º
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocation(0,0);
-		setTitle("3D Graphics Ver:1.12");
-		add(Object); // Screen.java‚Ì“à—e‚ğFrame‚É’Ç‰Á‚·‚éB
+		setTitle("3D Graphics Ver 1.12");
+		add(Object); // Screen.javaã®å†…å®¹ã‚’Frameã«è¿½åŠ ã™ã‚‹ã€‚
 	}
 	public static void main(String[] args) {
 	}
