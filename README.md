@@ -63,3 +63,11 @@
 + 細かなバグ修正
 + serialVersionUIDの宣言
 + 地面classを追加
+
+## Ver 2.2
+
++ バグ修正
+
+## 2.4
+
++ conditionの追加
