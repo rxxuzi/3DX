@@ -26,7 +26,6 @@ public class Main{
 		jf.setVisible(true);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.getJMenuBar();
-//		jf.setTitle("Projekt 3DX");
 		System.out.println("It is working properly.");
 	}
 }
