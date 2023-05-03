@@ -1,4 +1,4 @@
-package main2_8
+package main2_8;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
