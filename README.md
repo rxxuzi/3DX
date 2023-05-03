@@ -78,3 +78,8 @@
 + 回転機能の追加
 
 (課題) : 軽量化
+
+## Ver 2.8
+
++　デバックしやすいように変更
+`Screen.java`内の`firstPersonMode`を`true`にするとz=2に固定
