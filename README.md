@@ -83,3 +83,7 @@
 
 +　デバックしやすいように変更
 `Screen.java`内の`firstPersonMode`を`true`にするとz=2に固定
+
+## Ver 2.9
+
++ 
