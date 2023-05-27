@@ -1,10 +1,9 @@
 package main3_0;
-
-import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /*
 * rscフォルダ内のテキストを二次元配列に変換し、

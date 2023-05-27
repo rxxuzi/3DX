@@ -1,6 +1,5 @@
 package main3_0;
-
-import java.awt.*;
+import java.awt.Color;
 
 
 public class DPolygon {

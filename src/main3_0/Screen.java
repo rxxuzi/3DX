@@ -1,12 +1,20 @@
 package main3_0;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.AWTException;
+import java.awt.Color;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.*;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import javax.swing.JPanel;
 
 import static main3_0.Main.saves;
 

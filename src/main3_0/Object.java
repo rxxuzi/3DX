@@ -1,6 +1,7 @@
 package main3_0;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Polygon;
 
 public class Object {
 	Polygon P;
@@ -19,7 +20,7 @@ public class Object {
 		this.seeThrough = seeThrough;
 	}
 	
-	public void updatePolygon(double[] x, double[] y){
+	void updatePolygon(double[] x, double[] y){
 		//ポリゴンをリセット
 		P.reset();
 		
