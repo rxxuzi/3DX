@@ -29,17 +29,19 @@ public class Vector {
 		return x * V.x + y * V.y + z * V.z;
 	}
 	/*外積*/
+	@SuppressWarnings("unused")
 	Vector VectorProduct(Vector V1 , Vector V2){
         return new Vector(
 				V1.y * V2.z - V1.z * V2.y,
 				V1.z * V2.x - V1.x * V2.z,
 				V1.x * V2.y - V1.y * V2.x);
     }
-
+	@SuppressWarnings("unused")
 	double Angle(Vector V){
 		return Math.acos(DotProduct(V));
 	}
 	/*ベイアルの長さを求める*/
+	@SuppressWarnings("unused")
 	double Length(Vector V){
 		return Math.sqrt(x*x + y*y + z*z);
 	}

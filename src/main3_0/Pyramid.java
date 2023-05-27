@@ -1,6 +1,6 @@
 package main3_0;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Pyramid {
 	//座標
@@ -18,11 +18,6 @@ public class Pyramid {
 	double[] angle;
 	
 	final static double e = 0.0001;
-
-	//x,y,z座標
-	double a = x + dx;
-	double b = y + dy;
-	double c = z + dz;
 
 	//座標と色情報からポリゴンを生成
 	public Pyramid(double x, double y, double z, double dx, double dy, double dz, Color color){
@@ -69,10 +64,19 @@ public class Pyramid {
 			if(xdif < 0) {
 				angle[i] += Math.PI;				
 			}
-			switch(i) {
-			case 0 : xdif =    dx/2 + e; ydif = - dy/2 + e; break;
-			case 1 : xdif =    dx/2 + e; ydif =   dy/2 + e; break;
-			case 2 : xdif =  - dx/2 + e; ydif =   dy/2 + e; break;
+			switch (i) {
+				case 0 -> {
+					xdif = dx / 2 + e;
+					ydif = -dy / 2 + e;
+				}
+				case 1 -> {
+					xdif = dx / 2 + e;
+					ydif = dy / 2 + e;
+				}
+				case 2 -> {
+					xdif = -dx / 2 + e;
+					ydif = dy / 2 + e;
+				}
 			}
 
 			RotAdd[i] = angle[i] + 0.25 * Math.PI;
@@ -139,8 +143,8 @@ public class Pyramid {
 
 	@SuppressWarnings("unused")
 	void removePyramid(){
-		for(int i = 0; i < Polys.length; i ++) {
-			Screen.DPolygons.remove(Polys[i]);			
+		for (DPolygon poly : Polys) {
+			Screen.DPolygons.remove(poly);
 		}
 		Screen.Pyramid.remove(this);
 	}

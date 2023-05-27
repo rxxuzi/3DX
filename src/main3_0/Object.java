@@ -9,7 +9,7 @@ public class Object {
 	boolean draw = true, visible = true, seeThrough;
 	double lighting = 1;
 	
-	public Object(double[] x, double[] y, Color c, int n, boolean seeThrough){
+	public Object(double[] x, double[] y, Color c, boolean seeThrough){
 		//ƒ|ƒŠƒSƒ“‚ð’è‹`
 		P = new Polygon();
 		for(int i = 0; i<x.length; i++) {

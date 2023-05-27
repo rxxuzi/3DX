@@ -1,11 +1,9 @@
 package main1_19;
 
-import javax.swing.JPanel;
-import javax.swing.event.MenuKeyEvent;
-
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 /*
  * JPanel をextendしたclass
@@ -155,7 +153,7 @@ public class Screen extends JPanel{
 			}else {
 				try {
 					long ThreadSleepTime = (long) Math.abs( SleepTime - (System.currentTimeMillis() - LastRefresh ) );
-					Thread.sleep(ThreadSleepTime);
+					sleep(ThreadSleepTime);
 					
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -163,6 +161,15 @@ public class Screen extends JPanel{
 			}
 		}
 	}
+
+	private void sleep(long ms) {
+		try {
+			Thread.sleep(ms);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/*キー入力から制御するメソッド*/
 	private void Control() {
 		Vector ViewVector = new Vector(ViewTo[0] - ViewFrom[0] , ViewTo[1] - ViewFrom[1] , ViewTo[2] - ViewFrom[2] );
@@ -246,36 +253,36 @@ public class Screen extends JPanel{
 		//キーを押した時にtrue
 		public void keyPressed(KeyEvent e) {
 			switch(e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:   Keys[0] = true ; In = "Negative X" ; break;
-			case KeyEvent.VK_RIGHT:  Keys[1] = true ; In = "Positive X" ; break;				 
-			case KeyEvent.VK_UP:	 Keys[2] = true ; In = "Negative Y" ; break;				 
-			case KeyEvent.VK_DOWN:   Keys[3] = true ; In = "Positive Y" ; break;
-			case KeyEvent.VK_W : 	 Keys[4] = true ; In = "Zoom in"   	; break;
-			case KeyEvent.VK_A : 	 Keys[5] = true ; In = "Move left"	; break;
-			case KeyEvent.VK_S : 	 Keys[6] = true ; In = "Zoom out"   ; break;
-			case KeyEvent.VK_D :	 Keys[7] = true ; In = "Move right" ; break;
-			case KeyEvent.VK_SPACE:  Keys[8] = true ; In = "RESET"   	; break;
-			case KeyEvent.VK_SHIFT:  Keys[9] = true ; In = "Positive Z" ; break;
-			case KeyEvent.VK_CONTROL:Keys[10]= true ; In = "Negative Z" ; break;
+			case KeyEvent.VK_LEFT->{   Keys[0] = true ; In = "Negative X" ; }
+			case KeyEvent.VK_RIGHT->{  Keys[1] = true ; In = "Positive X" ; }				 
+			case KeyEvent.VK_UP->{	 Keys[2] = true ; In = "Negative Y" ; }				 
+			case KeyEvent.VK_DOWN->{   Keys[3] = true ; In = "Positive Y" ; }
+			case KeyEvent.VK_W ->{ 	 Keys[4] = true ; In = "Zoom in"   	; }
+			case KeyEvent.VK_A ->{ 	 Keys[5] = true ; In = "Move left"	; }
+			case KeyEvent.VK_S ->{ 	 Keys[6] = true ; In = "Zoom out"   ; }
+			case KeyEvent.VK_D ->{	 Keys[7] = true ; In = "Move right" ; }
+			case KeyEvent.VK_SPACE->{  Keys[8] = true ; In = "RESET"   	; }
+			case KeyEvent.VK_SHIFT->{  Keys[9] = true ; In = "Positive Z" ; }
+			case KeyEvent.VK_CONTROL->{Keys[10]= true ; In = "Negative Z" ; }
 			
 			}
 		}
 		
 		//キーを離した時にfalse
 		public void keyReleased(KeyEvent e) {
-			
-			switch(e.getKeyCode()) {
-			case KeyEvent.VK_LEFT:   Keys[0] = false ;  break;
-			case KeyEvent.VK_RIGHT:  Keys[1] = false ;  break;				 
-			case KeyEvent.VK_UP:	 Keys[2] = false ;  break;				 
-			case KeyEvent.VK_DOWN:   Keys[3] = false ;  break;
-			case KeyEvent.VK_W :	 Keys[4] = false ;  break;
-			case KeyEvent.VK_A :	 Keys[5] = false ;  break;
-			case KeyEvent.VK_S :	 Keys[6] = false ;  break;
-			case KeyEvent.VK_D :	 Keys[7] = false ;  break;
-			case KeyEvent.VK_SPACE:  Keys[8] = false ;  break;
-			case KeyEvent.VK_SHIFT:  Keys[9] = false ;  break;
-			case KeyEvent.VK_CONTROL:Keys[10]= false ;  break;
+
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_LEFT -> Keys[0] = false;
+				case KeyEvent.VK_RIGHT -> Keys[1] = false;
+				case KeyEvent.VK_UP -> Keys[2] = false;
+				case KeyEvent.VK_DOWN -> Keys[3] = false;
+				case KeyEvent.VK_W -> Keys[4] = false;
+				case KeyEvent.VK_A -> Keys[5] = false;
+				case KeyEvent.VK_S -> Keys[6] = false;
+				case KeyEvent.VK_D -> Keys[7] = false;
+				case KeyEvent.VK_SPACE -> Keys[8] = false;
+				case KeyEvent.VK_SHIFT -> Keys[9] = false;
+				case KeyEvent.VK_CONTROL -> Keys[10] = false;
 			}
 		}
 	}	

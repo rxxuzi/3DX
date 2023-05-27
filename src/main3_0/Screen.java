@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -28,6 +29,7 @@ public class Screen extends JPanel {
 	 * serialVersionUID を明示的に宣言しない場合、JVM は Serializable クラスのさまざまな側面に基づいて自動的に計算します。
 	 * ただし、異なるバージョンのクラスを読み込んでしまうことで発生しうる不正な動作を防ぐために、serialVersionUID をクラスに宣言することが推奨されています。
 	 */
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 
@@ -38,7 +40,6 @@ public class Screen extends JPanel {
 	 */
 	public static final boolean firstPersonMode = false;
 	private static final double height = 4.0;
-	private static final boolean debugMode = false;
 	private static final double cameraSpeed = 0.002; //default => 0.25
 	private static final long moveInterval = 10; // default => 0
 
@@ -65,8 +66,7 @@ public class Screen extends JPanel {
 	//最後にキューブを削除した時間
 	private static long LastCubeDeleteTime = 0;
 	private static long LastCubeGenerateTime = 0 ;
-	private int NumberOfDeleteCube = 0 ;
-	private static String dCube = "NONE";
+	int NumberOfDeleteCube = 0 ;
 
 	//マウスを中心に置いておくために使用するサブクラス
 	Robot r ;
@@ -295,20 +295,16 @@ public class Screen extends JPanel {
 		if(ViewFrom[2] < 3.0) {
             ViewFrom[2] = 3.0;
         }
+		int n = Floor.size();
 	}
 
-	/**
-	 * Control7が押された時、フォーカスしているキューブを特定して削除する
-	 *　連続で消えるのを防ぐ為、delete intervalを設けている
-	 */
-	int msd = 1000;
 	private void deleteCube() {
 		if(Control[7]) {
 			if(System.currentTimeMillis() - LastCubeDeleteTime >= deleteInterval) {
 				for(int i = 0 ; i < Cube.size() ; i ++) {
 					for(int j = 0 ; j < Cube.get(i).Polys.length ; j ++) {
 						if( Cube.get(i).Polys[j].DrawablePolygon.equals(FocusPolygon) ) {
-							dCube = Cube.get(i).toString();
+							String dCube = Cube.get(i).toString();
 							Cube.get(i).removeCube();
 							LastCubeDeleteTime = System.currentTimeMillis();
 							NumberOfDeleteCube ++ ;
@@ -325,6 +321,7 @@ public class Screen extends JPanel {
 			for(int i = 0 ; i < Cube.size() ; i ++ ) {
 				Cube.get(i).removeCube();
 				condition = "ALL DELETE";
+				NumberOfDeleteCube ++;
 			}
 		}
 	}
@@ -553,46 +550,61 @@ public class Screen extends JPanel {
 		
 		//キーを押した時にtrue
 		public void keyPressed(KeyEvent e) {
-			
-			switch(e.getKeyCode()) {
-				case KeyEvent.VK_W : 	 Control[0] = true ; break; //前進
-				case KeyEvent.VK_A : 	 Control[1] = true ; break; //後退
-				case KeyEvent.VK_S : 	 Control[2] = true ; break; //左へ
-				case KeyEvent.VK_D :	 Control[3] = true ; break; //右へ
-				case KeyEvent.VK_X : 	 Control[4] = true ; break; //視点リセット
-				case KeyEvent.VK_SPACE:	 Control[5] = true ; break; //上へ
-				case KeyEvent.VK_SHIFT:	 Control[6] = true ; break; //下へ
-				case KeyEvent.VK_BACK_SPACE: Control[7] = true ; break; //下へ
-				case KeyEvent.VK_R : 	 Control[8] = true ; break; //キューブを生成
-				case KeyEvent.VK_DELETE :Control[9] = true ; break; //キューブを削除
-				case KeyEvent.VK_O 	:	OutLines = !OutLines; //ライン削除
-					if(OutLines) {
+
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_W -> Control[0] = true;
+				//前進
+				case KeyEvent.VK_A -> Control[1] = true;
+				//後退
+				case KeyEvent.VK_S -> Control[2] = true;
+				//左へ
+				case KeyEvent.VK_D -> Control[3] = true;
+				//右へ
+				case KeyEvent.VK_X -> Control[4] = true;
+				//視点リセット
+				case KeyEvent.VK_SPACE -> Control[5] = true;
+				//上へ
+				case KeyEvent.VK_SHIFT -> Control[6] = true;
+				//下へ
+				case KeyEvent.VK_BACK_SPACE -> Control[7] = true;
+				//下へ
+				case KeyEvent.VK_R -> Control[8] = true;
+				//キューブを生成
+				case KeyEvent.VK_DELETE -> Control[9] = true;
+				//キューブを削除
+				case KeyEvent.VK_O -> {
+					OutLines = !OutLines; //ライン削除
+					if (OutLines) {
 						condition = "Show outer frame";
-					}else {
+					} else {
 						condition = "Hide outer frame";
 					}
-					break;
-				case KeyEvent.VK_ENTER : Control[10] = true ; break;
-				case KeyEvent.VK_ESCAPE : System.exit(0); break; //Escapeキーを押すと終了
+				}
+				case KeyEvent.VK_ENTER -> Control[10] = true;
+				case KeyEvent.VK_ESCAPE -> System.exit(0);
+				//Escapeキーを押すと終了
 			}
 
 		}
 		
 		//キーを離した時にfalse
 		public void keyReleased(KeyEvent e) {
-			
-			switch(e.getKeyCode()) {
-				case KeyEvent.VK_W : 	 Control[0] = false ; break;
-				case KeyEvent.VK_A : 	 Control[1] = false ; break;
-				case KeyEvent.VK_S : 	 Control[2] = false ; break;
-				case KeyEvent.VK_D :	 Control[3] = false ; break;
-				case KeyEvent.VK_X : 	 Control[4] = false ; break;
-				case KeyEvent.VK_SPACE:	 Control[5] = false ; condition = "NONE"; break;
-				case KeyEvent.VK_SHIFT:	 Control[6] = false ; break;
-				case KeyEvent.VK_BACK_SPACE: Control[7] = false ; break;
-				case KeyEvent.VK_R : 	 	 Control[8] = false ; break;
-				case KeyEvent.VK_DELETE :Control[9] = false ; break;
-				case KeyEvent.VK_ENTER: Control[10] = false ; break;
+
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_W -> Control[0] = false;
+				case KeyEvent.VK_A -> Control[1] = false;
+				case KeyEvent.VK_S -> Control[2] = false;
+				case KeyEvent.VK_D -> Control[3] = false;
+				case KeyEvent.VK_X -> Control[4] = false;
+				case KeyEvent.VK_SPACE -> {
+					Control[5] = false;
+					condition = "NONE";
+				}
+				case KeyEvent.VK_SHIFT -> Control[6] = false;
+				case KeyEvent.VK_BACK_SPACE -> Control[7] = false;
+				case KeyEvent.VK_R -> Control[8] = false;
+				case KeyEvent.VK_DELETE -> Control[9] = false;
+				case KeyEvent.VK_ENTER -> Control[10] = false;
 			}
 		}
 	}

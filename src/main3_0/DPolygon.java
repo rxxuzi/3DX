@@ -5,7 +5,7 @@ import java.awt.Color;
 public class DPolygon {
 	Color c;
 	double[] x, y, z;
-	boolean draw = true, seeThrough = false;
+	boolean draw = true, seeThrough;
 	double[] CalculatorPosition, nx, ny;
 	Object DrawablePolygon;
 	double AverageDistance;
@@ -21,7 +21,7 @@ public class DPolygon {
 	
 	//ポリゴンを作成するメソッド
 	void createPolygon(){
-		DrawablePolygon = new Object(new double[x.length], new double[x.length], c, Screen.DPolygons.size(), seeThrough);
+		DrawablePolygon = new Object(new double[x.length], new double[x.length], c, seeThrough);
 	}
 	
 	//ポリゴンを更新するメソッド
@@ -32,7 +32,7 @@ public class DPolygon {
 		
 		
 		for(int  i = 0 ; i < x.length ; i ++ ) {
-			CalculatorPosition = Calculator.CalculatePositionP(Screen.ViewFrom, Screen.ViewTo, x[i], y[i], z[i]);
+			CalculatorPosition = Calculator.CalculatePositionP(Screen.ViewFrom, x[i], y[i], z[i]);
 			nx[i] = (Main.ScreenSize.getWidth()  / 2 - Calculator.CalculateFocusPosition[0]) + CalculatorPosition[0] * Screen.zoom; 
 			ny[i] = (Main.ScreenSize.getHeight() / 2 - Calculator.CalculateFocusPosition[1]) + CalculatorPosition[1] * Screen.zoom; 
 			

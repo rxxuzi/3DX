@@ -9,6 +9,7 @@ import java.util.ArrayList;
 * rscフォルダ内のテキストを二次元配列に変換し、
 * オブジェクトとしてScreen.javaにあるList "Cube"にaddするclass
 * */
+@SuppressWarnings("unused")
 class TextToObject {
 	//文字列を格納するList
 	ArrayList<String> line = new ArrayList<>();
@@ -51,21 +52,13 @@ class TextToObject {
 			}
 		}
 
-		if(f != null) {
-			for(int i = 0 ; i < row ; i ++ ) {
-				for(int j = 0 ; j < col; j ++ ) {
-					//それぞれに対応した色にしてCubeを作成
-					switch(x[i][j]) {
-					case 1 :
-						Screen.Cube.add(new Cube(j , -10, row - i , 1, 1, 1, new Color(255,0,0) ));
-						break;
-					case 2 :
-						Screen.Cube.add(new Cube(j , -10, row - i , 1, 1, 1, new Color(98,86,26) ));
-						break;
-					case 3 :
-						Screen.Cube.add(new Cube(j , -10, row - i , 1, 1, 1, new Color(237,148,102) ));
-						break;
-					}
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				//それぞれに対応した色にしてCubeを作成
+				switch (x[i][j]) {
+					case 1 -> Screen.Cube.add(new Cube(j, -10, row - i, 1, 1, 1, new Color(255, 0, 0)));
+					case 2 -> Screen.Cube.add(new Cube(j, -10, row - i, 1, 1, 1, new Color(98, 86, 26)));
+					case 3 -> Screen.Cube.add(new Cube(j, -10, row - i, 1, 1, 1, new Color(237, 148, 102)));
 				}
 			}
 		}

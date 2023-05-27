@@ -4,11 +4,7 @@ import java.awt.*;
 import java.io.*;
 
 public final class Saves {
-    private int x;
-    private int y;
-    private int z;
-    private int d;
-    private Color color;
+    /**
     public static boolean isGameOver = false;
     public static boolean isGameStarted = false;
     public static boolean isGamePaused = false;
@@ -26,22 +22,25 @@ public final class Saves {
     public static boolean isGameStartedFromGameResume = false;
     public static boolean isGameStartedFromGameRestart = false;
     public static boolean isGameStartedFromGameQuitFromGameOver = false;
+    */
 
-    private File file;
+    private final String path;
+    File file;
     Saves(String str){
-        this.file = new File(str);
+        this.path = str;
     }
-
+    @Deprecated
     public void load(){
-        FileReader fr = null;
+        file = new File(path);
+        FileReader fr;
         try {
             fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String str = br.readLine();
             String[] data = str.split(",");
-            x = Integer.parseInt(data[1]);
-            y = Integer.parseInt(data[2]);
-            z = Integer.parseInt(data[3]);
+            int x = Integer.parseInt(data[1]);
+            int y = Integer.parseInt(data[2]);
+            int z = Integer.parseInt(data[3]);
             System.out.println(x + " " + y + " " + z);
             fr.close();
         }catch (IOException e){
@@ -50,6 +49,7 @@ public final class Saves {
     }
 
     public void write(String data ,Color c){
+        file = new File(path);
         FileWriter fw;
         String nc = c.toString();
         // remove "java.awt.Color" from the string

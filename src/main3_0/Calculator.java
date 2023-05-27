@@ -6,14 +6,13 @@ public class Calculator {
 	static Plane P;
 	static double[] CalculateFocusPosition = new double[2];
 	/*X , Y 座標の描画の計算*/
-	static double[] CalculatePositionP(double[] ViewFrom, double[] ViewTo, double x, double y, double z){		
-		double[] projP = getProject(ViewFrom, ViewTo, x, y, z, P);
-		double[] drawP = getDrawP(projP[0], projP[1], projP[2]);
-		return drawP;
+	static double[] CalculatePositionP(double[] ViewFrom, double x, double y, double z){
+		double[] projP = getProject(ViewFrom, x, y, z, P);
+		return getDrawP(projP[0], projP[1], projP[2]);
 	}
 
-	static double[] getProject(double[] ViewFrom, double[] ViewTo, double x, double y, double z, Plane P){
-		
+	static double[] getProject(double[] ViewFrom, double x, double y, double z, Plane P){
+
 		//視点からとあるポイントまでのベクトル
 		Vector ViewToPoint = new Vector(x - ViewFrom[0], y - ViewFrom[1], z - ViewFrom[2]);
 		
@@ -51,9 +50,7 @@ public class Calculator {
 			xRot = -xRot;
 		if(ViewFrom[0]<ViewTo[0])
 			yRot = -yRot;
-
-			Vector V = new Vector(xRot, yRot, 0);
-		return V;
+		return new Vector(xRot, yRot, 0);
 	}
 	
 	static void VectorInfo(){
@@ -80,7 +77,7 @@ public class Calculator {
 		RVector2 = ViewVector.CrossProduct(RVector1);
 		
 		
-		CalculateFocusPosition = Calculator.CalculatePositionP(Screen.ViewFrom, Screen.ViewTo, Screen.ViewTo[0], Screen.ViewTo[1], Screen.ViewTo[2]);
+		CalculateFocusPosition = Calculator.CalculatePositionP(Screen.ViewFrom, Screen.ViewTo[0], Screen.ViewTo[1], Screen.ViewTo[2]);
 		
 		CalculateFocusPosition[0] = Screen.zoom * CalculateFocusPosition[0];
 		CalculateFocusPosition[1] = Screen.zoom * CalculateFocusPosition[1];
