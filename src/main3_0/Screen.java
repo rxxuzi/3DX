@@ -40,8 +40,11 @@ public class Screen extends JPanel {
 	 */
 	public static final boolean firstPersonMode = false;
 	private static final double height = 4.0;
+	//cameraSpeedは値が小さいほど早く動く
 	private static final double cameraSpeed = 0.002; //default => 0.25
 	private static final long moveInterval = 10; // default => 0
+	private static final double gravity = 0.01; //default => 0.01
+	private static final boolean debugMode = false;
 
 	//classを格納するArrayList
 	public static ArrayList<DPolygon> DPolygons = new ArrayList<>();
@@ -89,7 +92,7 @@ public class Screen extends JPanel {
 	static double MouseX = 0 , MouseY = 0;
 
 	//視点の動くスピードを制御。大きいほど遅く動く Max 1.0
-	static double MovementSpeed = 0.5;
+	static double MovementSpeed = 0.4;
 
 	//FPSの測定
 	double drawFPS = 0;
@@ -135,6 +138,38 @@ public class Screen extends JPanel {
 
 
 		Cube.add(new Cube(5,5,5,3,3,3,Color.green));
+
+		Cube.add(new Cube(0, 0, 0, 4, 4, 4, Color.GRAY));
+
+
+		Cube.add(new Cube(18, -4, 0, 2, 2, 2, Color.red));
+		Cube.add(new Cube(20, -4, 0, 2, 2, 2, Color.yellow));
+		Cube.add(new Cube(22, -4, 0, 2, 2, 2, Color.green));
+		Cube.add(new Cube(24, -4, 0, 2, 2, 2, Color.blue));
+		/*
+			１．赤　R255
+			２．橙　R255 G150
+			３．黄　R255 G240
+			４．緑　G135
+			５．青　G145 B255
+			６．紺　G100 B190
+			７．紫　R145 B130
+		 */
+
+//		Pyramid.add(new Pyramid(2, 2, 3, 4, 4, 4, Color.MAGENTA));
+		Pyramid.add(new Pyramid(4, 17.5, 2, 2, 2, Math.sqrt(3) , Color.YELLOW));
+		if(!debugMode){
+			Cube.add(new Cube(10 , -2 , 0 , 2,2,2, new Color(255,240,0)));
+			Cube.add(new Cube(8 , -2 , 0 , 2,2,2,  new Color(145,0,130)));
+			Cube.add(new Cube(8 , -2 , 2, 2,2,2,   new Color(10,90,130)));
+
+			for(int  i = 0 ; i < 20 ; i +=2 ) {
+				Cube.add(new Cube(18 , i, i, 2, 2, 2, Color.red));
+				Cube.add(new Cube(20 , i, i, 2, 2, 2, Color.yellow));
+				Cube.add(new Cube(22 , i, i, 2, 2, 2, Color.green));
+				Cube.add(new Cube(24 , i, i, 2, 2, 2, Color.blue));
+			}
+		}
 		/*地面の表示*/
 		int d = 2;//幅
 
@@ -148,6 +183,15 @@ public class Screen extends JPanel {
 			}
 		}
 
+		new TextToObject("./rsc/summon.txt");
+
+	}
+
+	private void Rotation(){
+		if(Pyramid.size() != 0){
+			Pyramid.get(0).rotation += 0.1;
+			Pyramid.get(0).updatePoly();
+		}
 	}
 
 	/*描画に関するメソッド*/
@@ -157,6 +201,9 @@ public class Screen extends JPanel {
 
 		//カメラを動かす
 		KeyControl();
+
+		//オブジェクト回転
+		Rotation();
 
 		//フォーカスされたポリゴンを削除する
 		deleteCube();
@@ -228,12 +275,12 @@ public class Screen extends JPanel {
 	private void snakeMove() {
 		double dx = 0.1;
 		double dy = 0.1;
-		for(Cube c : Cube){
-            c.x += dx;
-            c.y += dy;
+		if(Cube.size() > 0){
+			var c = Cube.get(0);
+			c.x += dx;
+			c.y += dy;
 			c.updatePoly();
-//            c.z += dz;
-        }
+		}
 	}
 
 	/*描画更新のためのメソッド*/
@@ -447,8 +494,8 @@ public class Screen extends JPanel {
 		if(Control[6]) {
 			//z < 0の場合z = 0で止める
 			if(ViewFrom[2] > 0.0) {
-				ViewFrom[2] -= 0.4;
-				ViewTo[2] -= 0.4;
+				ViewFrom[2] -= 0.4 + gravity;
+				ViewTo[2] -= 0.4 + gravity;
 			}else {
 				ViewFrom[2] -= 0.1;
 				ViewTo[2] -= 0.1;
