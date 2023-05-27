@@ -1,7 +1,10 @@
 package main2_8;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+<<<<<<< HEAD
 import java.awt.*;
+=======
+>>>>>>> fd9d39fe20262db2ac5de077ce0a3492479eaba7
 
 
 /*

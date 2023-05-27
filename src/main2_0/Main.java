@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package main2_0;
+=======
+package main;
+>>>>>>> fd9d39fe20262db2ac5de077ce0a3492479eaba7
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;

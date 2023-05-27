@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package main2_8;
 
 
@@ -20,4 +21,28 @@ public class Vector {
 				z * V.x - x * V.z,
 				x * V.y - y * V.x);
 	}
+=======
+package main2_8;
+
+
+public class Vector {
+	double x, y, z;
+	public Vector(double x, double y, double z){
+		/*ベクトルの大きさを計算*/
+		double length = Math.sqrt(x*x + y*y + z*z);
+		/*線形独立の時に実行。線形従属の時にはx,y,zの値は0に*/
+		if(length>0){
+			this.x = x/length;
+			this.y = y/length;
+			this.z = z/length;
+		}
+	}
+	/*ベクトルの直角に交差するベクトルの作成*/
+	Vector CrossProduct(Vector V){
+		return new Vector(
+				y * V.z - z * V.y,
+				z * V.x - x * V.z,
+				x * V.y - y * V.x);
+	}
+>>>>>>> fd9d39fe20262db2ac5de077ce0a3492479eaba7
 }
