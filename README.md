@@ -5,6 +5,8 @@
 
 バージョンの欠番はエラーやバックアップの取り忘れ
 
+Version 3.0以降は[3DXX](https://github.com/rxxuzi/3DXX)へ
+
 ## Ver 1.12
 
 + キー入力可能に変更
